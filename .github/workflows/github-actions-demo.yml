@@ -12,13 +12,18 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
-      - run: |
+      - name: Event trigger 
+        run: |
           echo "Job triggered by event: ${{ github.event_name }}"
+          
+      - name: Branch name
+        run: |
           echo "Branch Name: ${{ github.ref }}"
-
-      - uses: actions/checkout@v3.3.0
-
+          
+      - name: Checkout
+        uses: actions/checkout@v6
+      
       - name: List files in the repository
         run: |
-          echo "Files included in the repository ${{ github.repository }} :"
+          echo "Files included in the repository ${{ github.repository }}:"
           tree
